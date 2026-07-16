@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Đỗ Hữu Hiệp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFF8ED;
+  --paper-2:#FFF1DA;
+  --ink:#1B2A4A;
+  --ink-soft:#4A5A7A;
+  --coral:#FF6B4A;
+  --purple:#7B4FE0;
+  --teal:#0E9A94;
+  --gold:#E8A33D;
+  --line:rgba(27,42,74,0.14);
+  --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  line-height:1.6;
+  min-height:100vh;
+  background-image:
+    radial-gradient(circle at 10% 8%, rgba(255,107,74,0.07), transparent 40%),
+    radial-gradient(circle at 90% 85%, rgba(14,154,148,0.08), transparent 45%),
+    radial-gradient(circle at 85% 10%, rgba(123,79,224,0.06), transparent 40%);
+}
+h1,h2,h3,.display{font-family:'Be Vietnam Pro',sans-serif;}
+.mono{font-family:'IBM Plex Mono',monospace;}
+
+/* ===== top cover bar ===== */
+.coverbar{
+  background:var(--ink);
+  color:var(--paper);
+  padding:14px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;
+  top:0;
+  z-index:50;
+  box-shadow:0 2px 18px rgba(0,0,0,0.12);
+}
+.coverbar .brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:13px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:#FFD9A0;
+}
+.coverbar .brand svg{width:20px;height:20px;flex-shrink:0;}
+.tabs{display:flex;gap:6px;}
+.tab-btn{
+  background:transparent;
+  border:1px solid rgba(255,248,237,0.25);
+  color:var(--paper);
+  font-family:'Be Vietnam Pro',sans-serif;
+  font-weight:600;
+  font-size:14px;
+  padding:9px 16px;
+  border-radius:999px;
+  cursor:pointer;
+  transition:all .25s ease;
+  white-space:nowrap;
+}
+.tab-btn:hover{background:rgba(255,248,237,0.1);}
+.tab-btn.active{
+  background:var(--gold);
+  border-color:var(--gold);
+  color:var(--ink);
+}
+@media(max-width:720px){
+  .coverbar{flex-direction:column;gap:12px;align-items:stretch;padding:14px 16px;}
+  .tabs{justify-content:center;flex-wrap:wrap;}
+}
+
+/* ===== page wrap ===== */
+.page{
+  max-width:980px;
+  margin:0 auto;
+  padding:56px 24px 90px;
+  display:none;
+  animation:fadeUp .5s ease;
+}
+.page.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--coral);
+  font-weight:600;
+  margin-bottom:10px;
+}
+.page h1{
+  font-size:clamp(32px,5vw,52px);
+  font-weight:800;
+  letter-spacing:-0.02em;
+  margin-bottom:14px;
+}
+.lede{
+  font-size:17px;
+  color:var(--ink-soft);
+  max-width:640px;
+  margin-bottom:44px;
+}
+
+/* ===== passport info card (Trang gioi thieu) ===== */
+.passport-card{
+  background:var(--ink);
+  color:var(--paper);
+  border-radius:24px;
+  padding:38px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 20px 50px rgba(27,42,74,0.28);
+  margin-bottom:48px;
+}
+.passport-card::before{
+  content:"";
+  position:absolute;
+  inset:10px;
+  border:1.5px dashed rgba(255,248,237,0.25);
+  border-radius:16px;
+  pointer-events:none;
+}
+.passport-top{
+  display:flex;
+  gap:28px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.avatar{
+  width:96px;height:96px;border-radius:50%;
+  background:linear-gradient(135deg,var(--coral),var(--gold));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Be Vietnam Pro',sans-serif;
+  font-weight:800;font-size:32px;color:var(--ink);
+  flex-shrink:0;
+  border:3px solid rgba(255,248,237,0.3);
+}
+.passport-name{font-size:26px;font-weight:800;margin-bottom:4px;}
+.passport-role{color:#FFD9A0;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.05em;}
+.passport-grid{
+  margin-top:30px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px 32px;
+}
+.passport-field label{
+  display:block;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10.5px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:rgba(255,248,237,0.5);
+  margin-bottom:5px;
+}
+.passport-field div{font-size:15.5px;font-weight:500;}
+@media(max-width:600px){.passport-grid{grid-template-columns:1fr;}}
+
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;}
+.tag{
+  background:rgba(255,248,237,0.1);
+  border:1px solid rgba(255,248,237,0.22);
+  padding:6px 13px;
+  border-radius:999px;
+  font-size:13px;
+}
+
+.section-card{
+  background:var(--paper-2);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:30px 32px;
+  margin-bottom:24px;
+}
+.section-card h3{font-size:19px;margin-bottom:12px;display:flex;align-items:center;gap:9px;}
+.section-card p{color:var(--ink-soft);}
+.goal-list{margin-top:14px;display:grid;gap:10px;}
+.goal-list li{
+  list-style:none;
+  display:flex;
+  gap:10px;
+  color:var(--ink-soft);
+  font-size:15px;
+}
+.goal-list li::before{
+  content:"✦";
+  color:var(--coral);
+  flex-shrink:0;
+}
+
+/* ===== stamps / project page ===== */
+.stamp-grid{display:grid;gap:26px;}
+.stamp{
+  background:var(--paper-2);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:30px 32px;
+  position:relative;
+  overflow:hidden;
+}
+.stamp::after{
+  content:attr(data-num);
+  position:absolute;
+  right:18px;
+  top:8px;
+  font-family:'Be Vietnam Pro',sans-serif;
+  font-weight:900;
+  font-size:88px;
+  color:rgba(27,42,74,0.05);
+  line-height:1;
+  pointer-events:none;
+}
+.stamp-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:16px;}
+.stamp-badge{
+  width:52px;height:52px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  font-size:22px;
+  border:2.5px dashed;
+}
+.stamp-title{font-size:20px;font-weight:700;margin-bottom:4px;}
+.stamp-sub{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);}
+.stamp-body h4{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  margin:16px 0 8px;
+}
+.stamp-body ul{padding-left:20px;color:var(--ink-soft);font-size:14.5px;}
+.stamp-body ul li{margin-bottom:5px;}
+.evidence{
+  margin-top:16px;
+  border:1.5px dashed var(--line);
+  border-radius:12px;
+  padding:16px 18px;
+  background:rgba(255,255,255,0.5);
+  font-size:13.5px;
+  color:var(--ink-soft);
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+}
+.evidence svg{flex-shrink:0;margin-top:2px;}
+
+/* stamp color variants */
+.c-coral .stamp-badge{background:rgba(255,107,74,0.12);border-color:var(--coral);color:var(--coral);}
+.c-purple .stamp-badge{background:rgba(123,79,224,0.12);border-color:var(--purple);color:var(--purple);}
+.c-teal .stamp-badge{background:rgba(14,154,148,0.12);border-color:var(--teal);color:var(--teal);}
+.c-gold .stamp-badge{background:rgba(232,163,61,0.15);border-color:var(--gold);color:#B97A1E;}
+
+/* ===== tong ket page ===== */
+.postcard{
+  background:var(--paper-2);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:34px 36px;
+  margin-bottom:22px;
+  position:relative;
+}
+.postcard h3{font-size:18px;margin-bottom:12px;}
+.postcard p{color:var(--ink-soft);font-size:15px;}
+.stripe{
+  position:absolute;top:0;left:0;bottom:0;width:8px;
+  background:repeating-linear-gradient(-45deg,var(--coral) 0 8px,var(--gold) 8px 16px);
+  border-radius:var(--radius) 0 0 var(--radius);
+}
+.postcard{padding-left:44px;}
+
+.final-stamp{
+  margin-top:40px;
+  text-align:center;
+  padding:44px 24px;
+  border:2.5px dashed var(--ink);
+  border-radius:20px;
+  transform:rotate(-1deg);
+}
+.final-stamp .mono{letter-spacing:0.2em;font-size:12px;color:var(--ink-soft);}
+.final-stamp h2{font-size:26px;margin:10px 0 6px;}
+
+footer{
+  text-align:center;
+  padding:30px;
+  color:var(--ink-soft);
+  font-size:13px;
+  font-family:'IBM Plex Mono',monospace;
+}
+</style>
+</head>
+<body>
+
+<div class="coverbar">
+  <div class="brand">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v16"/></svg>
+    Portfolio
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" data-page="p-intro">📘 Giới thiệu</button>
+    <button class="tab-btn" data-page="p-projects">🗺️ Dự án</button>
+    <button class="tab-btn" data-page="p-summary">✍️ Tổng kết</button>
+  </div>
+</div>
+
+<!-- ================= TRANG 1: GIỚI THIỆU ================= -->
+<section class="page active" id="p-intro">
+  <div class="eyebrow mono">Trang 01 — Thông tin hành khách</div>
+  <h1>Xin chào, mình là Hiệp 👋</h1>
+  <p class="lede">Đây là cuốn "Portfolio" ghi lại hành trình mình khám phá và thực hành các năng lực công nghệ số — từ quản lý dữ liệu, tìm kiếm thông tin, cho đến làm việc cùng AI.</p>
+
+  <div class="passport-card">
+    <div class="passport-top">
+      <div class="avatar">ĐHH</div>
+      <div>
+        <div class="passport-name">Đỗ Hữu Hiệp</div>
+        <div class="passport-role mono">SINH VIÊN · KINH TẾ QUỐC TẾ</div>
+      </div>
+    </div>
+    <div class="passport-grid">
+      <div class="passport-field">
+        <label>Họ và tên</label>
+        <div>Đỗ Hữu Hiệp</div>
+      </div>
+      <div class="passport-field">
+        <label>Mã sinh viên</label>
+        <div>25052742</div>
+      </div>
+      <div class="passport-field">
+        <label>Chuyên ngành</label>
+        <div>Kinh tế quốc tế</div>
+      </div>
+      <div class="passport-field">
+        <label>Trường</label>
+        <div>Trường Đại học Kinh tế, ĐHQGHN (UEB)</div>
+      </div>
+      <div class="passport-field" style="grid-column:1/-1;">
+        <label>Sở thích / dấu hiệu nhận dạng</label>
+        <div class="tags">
+          <span class="tag">⚽ Thể thao</span>
+          <span class="tag">🎵 Âm nhạc</span>
+          <span class="tag">📷 Nhiếp ảnh</span>
+          <span class="tag">✈️ Du lịch</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <h3>🎯 Mục tiêu học tập &amp; định hướng phát triển</h3>
+    <p>Là sinh viên ngành Kinh tế quốc tế, mình mong muốn xây dựng nền tảng công dân số vững chắc để làm việc hiệu quả trong môi trường toàn cầu hóa — nơi dữ liệu, công cụ số và trí tuệ nhân tạo ngày càng gắn liền với hoạt động kinh tế, thương mại và nghiên cứu. Học phần <em>Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo</em> giúp mình rèn luyện tư duy phản biện khi khai thác thông tin, kỹ năng cộng tác trực tuyến và sử dụng AI một cách có trách nhiệm — những năng lực mình muốn tiếp tục phát triển trong các dự án học thuật và công việc tương lai.</p>
+  </div>
+
+  <div class="section-card">
+    <h3>🧭 Mục tiêu của Portfolio này</h3>
+    <ul class="goal-list">
+      <li>Thể hiện các kỹ năng số đã học và thực hành được trong suốt học phần.</li>
+      <li>Lưu trữ sản phẩm cá nhân một cách có hệ thống, dễ dàng truy cập và chia sẻ.</li>
+      <li>Ghi lại hành trình học tập như một "cuốn Portfolio" — mỗi bài tập là một điểm đến đã chinh phục.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= TRANG 2: DỰ ÁN ================= -->
+<section class="page" id="p-projects">
+  <div class="eyebrow mono">Trang 02 — Dấu thị thực</div>
+  <h1>Hành trình 6 chặng kỹ năng số</h1>
+  <p class="lede">Mỗi bài tập dưới đây là một "dấu visa" trong hành trình — đánh dấu một năng lực số mình đã tìm hiểu và áp dụng.</p>
+
+  <div class="stamp-grid">
+
+    <!-- Bai 1 -->
+    <article class="stamp c-coral" data-num="01">
+      <div class="stamp-head">
+        <div class="stamp-badge">🗂️</div>
+        <div>
+          <div class="stamp-title">Bài 1 — Thao tác cơ bản với tệp tin và thư mục</div>
+          <div class="stamp-sub mono">Chương 1–2 · Máy tính &amp; Quản lý dữ liệu</div>
+        </div>
+      </div>
+      <p style="color:var(--ink-soft);font-size:14.5px;">Trình bày cấu trúc thư mục tối ưu và quy tắc đặt tên tệp đã thiết lập để quản lý tài liệu học tập khoa học, an toàn.</p>
+      <div class="stamp-body">
+        <h4>Kiến thức nền tảng</h4>
+        <ul>
+          <li>Máy tính hiện đại được trang bị phần cứng thế hệ mới: CPU tích hợp NPU tăng tốc xử lý AI ngay trên thiết bị, RAM DDR5 cho băng thông vượt trội, SSD chuẩn NVMe giúp đọc/ghi dữ liệu gần như tức thời — nền tảng để thao tác với khối lượng tệp lớn diễn ra mượt mà.</li>
+          <li>Phân biệt các định dạng tệp thông dụng: văn bản (.docx, .pdf), bảng tính (.xlsx, .csv), trình chiếu (.pptx), hình ảnh (.jpg, .png), âm thanh/video (.mp3, .mp4) và tệp nén (.zip, .rar) — mỗi định dạng phù hợp với một mục đích lưu trữ và chia sẻ khác nhau.</li>
+          <li>Phân loại dữ liệu theo cấu trúc (có cấu trúc, bán cấu trúc, phi cấu trúc) giúp xác định cách sắp xếp thư mục phù hợp với từng loại tài liệu.</li>
+          <li>Hiểu vai trò của hệ điều hành trong việc quản lý tệp và quy trình cài đặt/gỡ bỏ ứng dụng an toàn, tránh phần mềm độc hại.</li>
+        </ul>
+        <h4>Cách thực hiện</h4>
+        <ul>
+          <li>Bước 1: Khảo sát toàn bộ tài liệu học tập hiện có, nhóm theo môn học và loại nội dung (bài giảng, bài tập, tài liệu tham khảo).</li>
+          <li>Bước 2: Thiết kế cây thư mục phân cấp 3 lớp: <span class="mono">Môn học → Chương/Chủ đề → Loại tài liệu</span>, đảm bảo không quá sâu để dễ điều hướng.</li>
+          <li>Bước 3: Áp dụng quy tắc đặt tên nhất quán, ví dụ: <span class="mono">NMCNS_Chuong1_BaiTap1.docx</span>, giúp dễ tìm kiếm, sắp xếp theo thứ tự và tránh trùng lặp.</li>
+          <li>Bước 4: Đồng bộ thư mục lên dịch vụ lưu trữ đám mây (Google Drive) song song với máy cá nhân để đảm bảo an toàn dữ liệu và có thể truy cập mọi lúc.</li>
+        </ul>
+        <h4>Kỹ năng rèn luyện</h4>
+        <ul>
+          <li>Tư duy tổ chức và hệ thống hóa thông tin một cách logic.</li>
+          <li>Thói quen sao lưu dữ liệu định kỳ để phòng tránh rủi ro mất mát.</li>
+        </ul>
+      </div>
+      <div class="evidence">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span><strong>Sản phẩm minh họa:</strong> gắn ảnh chụp màn hình cây thư mục và quy tắc đặt tên bạn đã xây dựng vào đây.</span>
+      </div>
+    </article>
+
+    <!-- Bai 2 -->
+    <article class="stamp c-purple" data-num="02">
+      <div class="stamp-head">
+        <div class="stamp-badge">🔍</div>
+        <div>
+          <div class="stamp-title">Bài 2 — Tìm kiếm và đánh giá thông tin học thuật</div>
+          <div class="stamp-sub mono">Chương 2 · Khai thác dữ liệu &amp; thông tin</div>
+        </div>
+      </div>
+      <p style="color:var(--ink-soft);font-size:14.5px;">Vận dụng các toán tử tìm kiếm nâng cao và tư duy phản biện để chọn lọc nguồn tin đáng tin cậy.</p>
+      <div class="stamp-body">
+        <h4>Kiến thức nền tảng</h4>
+        <ul>
+          <li>Mô hình DIKW làm rõ ba khái niệm cốt lõi: Dữ liệu (Data) — thô, chưa xử lý; Thông tin (Information) — đã xử lý, có ngữ cảnh; Tri thức (Knowledge) — sự hiểu biết có thể áp dụng để ra quyết định.</li>
+          <li>Phân loại dữ liệu theo cấu trúc (có cấu trúc, bán cấu trúc, phi cấu trúc) và theo nội dung (văn bản, số, hình ảnh, âm thanh) để lựa chọn phương pháp khai thác phù hợp.</li>
+          <li>Nhận diện các dấu hiệu của thông tin sai lệch, tin giả: nguồn không rõ ràng, thiếu trích dẫn, ngôn từ cảm tính, không thể kiểm chứng chéo.</li>
+          <li>Hiểu quy định về quyền tác giả (bản quyền) và nguyên tắc trích dẫn nguồn đúng chuẩn học thuật để tránh đạo văn.</li>
+        </ul>
+        <h4>Cách thực hiện</h4>
+        <ul>
+          <li>Bước 1: Xác định rõ câu hỏi/chủ đề cần tra cứu trước khi tìm kiếm, tránh tìm kiếm mơ hồ.</li>
+          <li>Bước 2: Vận dụng các toán tử tìm kiếm nâng cao như <span class="mono">site:</span>, <span class="mono">filetype:</span>, dấu ngoặc kép "..." để thu hẹp và nâng cao độ chính xác của kết quả.</li>
+          <li>Bước 3: Kết hợp công cụ AI để tổng hợp nhanh các nguồn, sau đó đối chiếu lại với nguồn gốc để kiểm chứng.</li>
+          <li>Bước 4: Đánh giá độ tin cậy của từng nguồn theo các tiêu chí: tác giả/tổ chức phát hành, thời gian cập nhật, tính khách quan và khả năng kiểm chứng chéo.</li>
+          <li>Bước 5: Trích dẫn nguồn tham khảo đầy đủ, đúng quy cách khi sử dụng thông tin trong bài viết.</li>
+        </ul>
+        <h4>Kỹ năng rèn luyện</h4>
+        <ul>
+          <li>Tư duy phản biện khi tiếp nhận thông tin trên môi trường số.</li>
+          <li>Kỹ năng học thuật: trích dẫn, tổng hợp và trình bày nguồn tài liệu minh bạch.</li>
+        </ul>
+      </div>
+      <div class="evidence">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span><strong>Sản phẩm minh họa:</strong> gắn ảnh chụp kết quả tìm kiếm nâng cao và bảng đánh giá độ tin cậy nguồn tin vào đây.</span>
+      </div>
+    </article>
+
+    <!-- Bai 3 -->
+    <article class="stamp c-teal" data-num="03">
+      <div class="stamp-head">
+        <div class="stamp-badge">💬</div>
+        <div>
+          <div class="stamp-title">Bài 3 — Viết Prompt hiệu quả cho các tác vụ học tập</div>
+          <div class="stamp-sub mono">Chương 3 · Tổng quan về Trí tuệ nhân tạo</div>
+        </div>
+      </div>
+      <p style="color:var(--ink-soft);font-size:14.5px;">So sánh Prompt ban đầu và Prompt đã cải tiến cùng kết quả đầu ra từ AI để rút ra nguyên tắc viết prompt hiệu quả.</p>
+      <div class="stamp-body">
+        <h4>Kiến thức nền tảng</h4>
+        <ul>
+          <li>Hệ thống khái niệm AI (Trí tuệ nhân tạo), ML (Học máy), DL (Học sâu) và GenAI (AI tạo sinh) — bốn khái niệm có quan hệ lồng nhau từ rộng đến hẹp.</li>
+          <li>Dòng lịch sử phát triển AI: khởi đầu với Phép thử Turing (1950) và Hội nghị Dartmouth (1956); trải qua hai giai đoạn "mùa đông AI" do hạn chế tính toán và dữ liệu; bùng nổ từ cuối thập niên 1990 nhờ Dữ liệu lớn, sức mạnh GPU và mạng nơ-ron nhân tạo.</li>
+          <li>Nguyên lý hoạt động cơ bản của Mô hình ngôn ngữ lớn (LLM): dự đoán chuỗi văn bản tiếp theo dựa trên xác suất học được từ lượng dữ liệu khổng lồ.</li>
+        </ul>
+        <h4>Cách thực hiện</h4>
+        <ul>
+          <li>Bước 1: Viết Prompt ban đầu ở dạng câu hỏi đơn giản, chưa có ngữ cảnh cụ thể (VD: "Viết một đoạn giới thiệu về kinh tế quốc tế").</li>
+          <li>Bước 2: Phân tích kết quả đầu ra — chỉ ra điểm còn chung chung, thiếu trọng tâm.</li>
+          <li>Bước 3: Cải tiến Prompt theo cấu trúc rõ ràng: xác định vai trò AI cần đóng ("Bạn là một giảng viên kinh tế..."), bối cảnh cụ thể, yêu cầu định dạng và độ dài đầu ra.</li>
+          <li>Bước 4: So sánh kết quả trước và sau cải tiến, rút ra nguyên tắc: càng cụ thể về vai trò – bối cảnh – định dạng, đầu ra càng sát nhu cầu.</li>
+          <li>Bước 5: Thử nghiệm chéo trên nhiều công cụ AI tạo sinh (ChatGPT, Gemini, Copilot) để so sánh cách phản hồi khác nhau với cùng một prompt.</li>
+        </ul>
+        <h4>Kỹ năng rèn luyện</h4>
+        <ul>
+          <li>Tư duy đặt câu hỏi rõ ràng, có mục tiêu.</li>
+          <li>Kỹ năng đánh giá và tinh chỉnh đầu ra của AI một cách có chọn lọc.</li>
+        </ul>
+      </div>
+      <div class="evidence">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span><strong>Sản phẩm minh họa:</strong> gắn ảnh so sánh Prompt trước/sau cải tiến và kết quả đầu ra tương ứng vào đây.</span>
+      </div>
+    </article>
+
+    <!-- Bai 4 -->
+    <article class="stamp c-gold" data-num="04">
+      <div class="stamp-head">
+        <div class="stamp-badge">🤝</div>
+        <div>
+          <div class="stamp-title">Bài 4 — Công cụ hợp tác trực tuyến cho dự án nhóm</div>
+          <div class="stamp-sub mono">Chương 4 · Giao tiếp &amp; hợp tác số</div>
+        </div>
+      </div>
+      <p style="color:var(--ink-soft);font-size:14.5px;">Minh chứng việc sử dụng công cụ quản lý dự án nhóm và cách thức phối hợp trực tuyến hiệu quả.</p>
+      <div class="stamp-body">
+        <h4>Kiến thức nền tảng</h4>
+        <ul>
+          <li>Giao tiếp số có 3 đặc điểm nổi bật: vượt giới hạn không gian/thời gian, khả năng lưu trữ/truy vết và đa dạng hình thức truyền tải đa phương tiện.</li>
+          <li>Giao tiếp đồng bộ (Zoom, Google Meet, chat trực tiếp) cho phản hồi tức thì nhưng đòi hỏi có mặt cùng lúc; giao tiếp bất đồng bộ (Email, bình luận Google Docs, diễn đàn) linh hoạt hơn nhưng có độ trễ — cần chọn hình thức phù hợp theo tình huống.</li>
+          <li>Hệ sinh thái Google Workspace và Microsoft 365 cho phép đồng biên tập tài liệu theo thời gian thực, chia sẻ tài nguyên nhóm tập trung.</li>
+        </ul>
+        <h4>Cách thực hiện</h4>
+        <ul>
+          <li>Bước 1: Thống nhất kênh giao tiếp chính của nhóm — sử dụng chat nhóm cho trao đổi nhanh (bất đồng bộ), lịch họp Google Meet định kỳ cho thảo luận sâu (đồng bộ).</li>
+          <li>Bước 2: Khởi tạo board quản lý công việc trên Trello/Notion, chia nhỏ dự án thành các nhiệm vụ cụ thể, gán người phụ trách và deadline.</li>
+          <li>Bước 3: Đồng biên tập tài liệu chung trên Google Docs/Sheets, sử dụng tính năng bình luận và lịch sử chỉnh sửa để theo dõi đóng góp từng thành viên.</li>
+          <li>Bước 4: Cập nhật tiến độ định kỳ trên board, di chuyển thẻ công việc qua các cột "Chưa làm – Đang làm – Hoàn thành" để cả nhóm nắm được tình hình chung.</li>
+          <li>Bước 5: Tuân thủ quy tắc ứng xử văn minh (Netiquette): phản hồi đúng hạn, góp ý xây dựng, tôn trọng ý kiến các thành viên.</li>
+        </ul>
+        <h4>Kỹ năng rèn luyện</h4>
+        <ul>
+          <li>Kỹ năng làm việc nhóm từ xa và quản lý thời gian.</li>
+          <li>Khả năng sử dụng công cụ số để minh bạch hóa tiến độ công việc chung.</li>
+        </ul>
+      </div>
+      <div class="evidence">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span><strong>Sản phẩm minh họa:</strong> gắn ảnh chụp board Trello/Notion và bảng phân công nhiệm vụ nhóm vào đây.</span>
+      </div>
+    </article>
+
+    <!-- Bai 5 -->
+    <article class="stamp c-coral" data-num="05">
+      <div class="stamp-head">
+        <div class="stamp-badge">🎨</div>
+        <div>
+          <div class="stamp-title">Bài 5 — Sử dụng AI tạo sinh để hỗ trợ sáng tạo nội dung</div>
+          <div class="stamp-sub mono">Chương 5 · Sáng tạo nội dung số</div>
+        </div>
+      </div>
+      <p style="color:var(--ink-soft);font-size:14.5px;">Trưng bày sản phẩm nội dung số hoàn thiện (hình ảnh, video hoặc bài viết) được thực hiện với sự hỗ trợ của AI.</p>
+      <div class="stamp-body">
+        <h4>Kiến thức nền tảng</h4>
+        <ul>
+          <li>Nội dung số là bất kỳ nội dung nào tồn tại dưới dạng dữ liệu số, cho phép tạo, xem, phân phối, sửa đổi và lưu trữ bằng thiết bị công nghệ.</li>
+          <li>5 dạng nội dung số phổ biến: văn bản (dễ tạo, dễ tìm kiếm nhưng kém hấp dẫn nếu dài), hình ảnh (trực quan, thu hút nhưng cần kỹ năng thiết kế), âm thanh (gần gũi, tiện lợi nhưng khó tra cứu), video (hấp dẫn, dễ lan truyền nhưng tốn công sản xuất) và đa phương tiện/tương tác (trải nghiệm phong phú nhưng phức tạp để sản xuất).</li>
+          <li>Cần lưu ý các vấn đề bản quyền, sở hữu trí tuệ và đạo đức khi sử dụng nội dung — đặc biệt với nội dung do AI tạo ra.</li>
+        </ul>
+        <h4>Cách thực hiện</h4>
+        <ul>
+          <li>Bước 1 — Lên ý tưởng & nghiên cứu: xác định mục tiêu nội dung (cung cấp thông tin, thuyết phục hay giải trí), đối tượng hướng đến và góc nhìn riêng biệt.</li>
+          <li>Bước 2 — Lựa chọn định dạng phù hợp với mục tiêu và thế mạnh cá nhân, ví dụ nội dung hình ảnh cho chủ đề trực quan, video cho hướng dẫn từng bước.</li>
+          <li>Bước 3 — Sử dụng công cụ chuyên dụng theo từng loại: Google Docs/Word cho văn bản, Canva/Figma cho hình ảnh, CapCut/Audacity cho âm thanh-video.</li>
+          <li>Bước 4 — Ứng dụng AI tạo sinh (GenAI) thông qua prompt để hỗ trợ lên ý tưởng, phác thảo nội dung hoặc tối ưu hình ảnh/văn bản ban đầu.</li>
+          <li>Bước 5 — Rà soát, chỉnh sửa lại theo phong cách cá nhân trước khi hoàn thiện sản phẩm cuối cùng, đảm bảo không sao chép nguyên văn từ AI.</li>
+        </ul>
+        <h4>Kỹ năng rèn luyện</h4>
+        <ul>
+          <li>Tư duy sáng tạo và khả năng kể chuyện bằng nội dung số.</li>
+          <li>Kỹ năng phối hợp giữa công cụ thiết kế truyền thống và AI tạo sinh.</li>
+        </ul>
+      </div>
+      <div class="evidence">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span><strong>Sản phẩm minh họa:</strong> gắn hình ảnh/video/bài viết đã tạo cùng AI vào đây.</span>
+      </div>
+    </article>
+
+    <!-- Bai 6 -->
+    <article class="stamp c-purple" data-num="06">
+      <div class="stamp-head">
+        <div class="stamp-badge">🛡️</div>
+        <div>
+          <div class="stamp-title">Bài 6 — Sử dụng AI có trách nhiệm trong học tập và nghiên cứu</div>
+          <div class="stamp-sub mono">Chương 6 · An toàn &amp; liêm chính học thuật</div>
+        </div>
+      </div>
+      <p style="color:var(--ink-soft);font-size:14.5px;">Bộ nguyên tắc cá nhân về sử dụng AI có trách nhiệm, xây dựng dựa trên các kiến thức đã nghiên cứu.</p>
+      <div class="stamp-body">
+        <h4>Kiến thức nền tảng</h4>
+        <ul>
+          <li>Dấu chân số (Digital Footprint) là tập hợp mọi dấu vết dữ liệu để lại khi dùng Internet, gồm dạng chủ động (cố ý chia sẻ) và bị động (bị thu thập ngầm như IP, lịch sử tìm kiếm) — hình thành nên danh tính số của mỗi người.</li>
+          <li>Các nguy cơ an ninh mạng đáng chú ý: lừa đảo trực tuyến (phishing, kể cả qua mã QR giả mạo), phần mềm độc hại/mã độc tống tiền (ransomware), tấn công từ chối dịch vụ (DDoS), và các mối đe dọa do AI hỗ trợ tạo ra email lừa đảo tinh vi, khó phát hiện.</li>
+          <li>Liêm chính học thuật đòi hỏi nhận diện rõ các hình thức gian lận, đặc biệt là đạo văn, cùng kỹ năng diễn giải (paraphrase) và trích dẫn nguồn đúng quy cách.</li>
+        </ul>
+        <h4>Nguyên tắc cá nhân khi sử dụng AI</h4>
+        <ul>
+          <li>Luôn kiểm chứng lại thông tin do AI cung cấp trước khi sử dụng trong bài tập hoặc nghiên cứu, không mặc định AI luôn đúng.</li>
+          <li>Không sao chép nguyên văn nội dung do AI tạo ra; diễn giải (paraphrase) theo văn phong cá nhân và trích dẫn nguồn rõ ràng khi cần.</li>
+          <li>Sử dụng AI như một công cụ hỗ trợ tư duy, không thay thế hoàn toàn quá trình học tập và suy nghĩ cá nhân.</li>
+          <li>Không chia sẻ thông tin cá nhân nhạy cảm (mã sinh viên, số điện thoại, mật khẩu...) khi trò chuyện với các công cụ AI.</li>
+          <li>Bảo vệ dấu chân số và danh tính số của bản thân, cảnh giác với lừa đảo trực tuyến qua email, mã QR hoặc tin nhắn giả mạo.</li>
+          <li>Minh bạch về việc có sử dụng AI hỗ trợ khi được yêu cầu, tránh gian lận học thuật dưới mọi hình thức.</li>
+          <li>Tuân thủ quy định của nhà trường và pháp luật Việt Nam về liêm chính học thuật khi ứng dụng AI trong học tập.</li>
+        </ul>
+        <h4>Kỹ năng rèn luyện</h4>
+        <ul>
+          <li>Nhận thức về an toàn thông tin cá nhân trên không gian mạng.</li>
+          <li>Tư duy đạo đức và trách nhiệm khi ứng dụng công nghệ mới.</li>
+        </ul>
+      </div>
+      <div class="evidence">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span><strong>Sản phẩm minh họa:</strong> gắn ảnh minh chứng thực tế và phân tích liên hệ với trải nghiệm dùng AI của bạn vào đây.</span>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ================= TRANG 3: TỔNG KẾT ================= -->
+<section class="page" id="p-summary">
+  <div class="eyebrow mono">Trang 03 — Trang cuối hành trình</div>
+  <h1>Nhìn lại chặng đường</h1>
+  <p class="lede">Vài dòng cảm nhận sau khi hoàn thành cuốn Portfolio này.</p>
+
+  <div class="postcard">
+    <div class="stripe"></div>
+    <h3>💭 Trải nghiệm &amp; cảm nhận cá nhân</h3>
+    <p>Quá trình xây dựng Portfolio này giúp mình nhìn lại toàn bộ hành trình học tập của học phần một cách có hệ thống — từ những kiến thức nền tảng về máy tính, dữ liệu, cho đến việc thực hành ứng dụng AI vào công việc học tập hằng ngày. Việc phải "kể lại" kiến thức theo cách của riêng mình, thay vì chỉ ghi chép thụ động, khiến mình hiểu sâu hơn và nhớ lâu hơn.</p>
+  </div>
+
+  <div class="postcard">
+    <div class="stripe"></div>
+    <h3>⭐ Điều tâm đắc nhất</h3>
+    <p>Mình ấn tượng nhất với kỹ năng viết Prompt hiệu quả và tư duy sử dụng AI có trách nhiệm — đây là hai năng lực mình tin sẽ còn đồng hành lâu dài trong học tập lẫn công việc sau này, đặc biệt với ngành Kinh tế quốc tế nơi việc phân tích dữ liệu và làm việc với công cụ số ngày càng phổ biến.</p>
+  </div>
+
+  <div class="postcard">
+    <div class="stripe"></div>
+    <h3>🧗 Thách thức đã gặp phải</h3>
+    <p>Khó khăn lớn nhất là hệ thống hóa lượng kiến thức khá rộng của 6 chương thành các sản phẩm minh họa cụ thể, súc tích, đồng thời trình bày sao cho Portfolio vừa đầy đủ nội dung vừa có tính thẩm mỹ, dễ theo dõi. Việc cân bằng giữa chiều sâu kiến thức và sự gọn gàng trong trình bày là một bài học quý về kỹ năng số nói chung.</p>
+  </div>
+
+  <div class="final-stamp">
+    <div class="mono">◆ ◆ ◆ ĐÃ HOÀN THÀNH HÀNH TRÌNH ◆ ◆ ◆</div>
+    <h2>6/6 Kỹ năng số đã chinh phục 🎉</h2>
+    <p style="color:var(--ink-soft);font-size:14px;">Cảm ơn bạn đã ghé thăm Portfolio của Đỗ Hữu Hiệp.</p>
+  </div>
+</section>
+
+<footer>Portfolio Kỹ thuật số — Nhập môn Công nghệ số &amp; Ứng dụng Trí tuệ nhân tạo · UEB, ĐHQGHN</footer>
+
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.page).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>
